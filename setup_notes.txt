@@ -1,0 +1,40 @@
+
+
+# 1) clone the repo
+git clone https://github.com/ml4tp/gamepad.git
+
+# 2) run get_data.sh
+./get_data.sh
+
+# 3) install opam and configure the version
+# install instructions: https://opam.ocaml.org/doc/Install.html
+# after opam is installed:
+opam switch 4.05.0
+eval `opam config env`
+opam install camlp4
+opam install ocamlfind
+
+# Note that it is normal to see message "LablGtk2 not found: => no CoqIde will be built."
+
+# 4) configure / build tcoq, then update environment
+./setup_tcoq.sh
+./build_tcoq.sh
+source build_config.sh
+
+# 5) build ssreflect
+patch math-comp/mathcomp/ssreflect/plugin/v8.6/ssreflect.ml4 ssreflect/ssreflect.ml4.patch
+./build_mathcomp.sh
+
+# Note that it is normal to see: make clean failed due to "No rule to make target 'Makefile.coq'"
+# this will take awhile
+
+# 6) collect their dataset
+
+which coqc # should show something like /home/xujie/Projects/gamepad_env/gamepad/tcoq/build/bin/coqc
+
+./build_oddorder.sh
+# again, it is normal to see: make clean failed due to "No rule to make target 'Makefile.coq'"
+
+# 7)
+
+
