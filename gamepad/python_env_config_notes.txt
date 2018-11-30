@@ -1,0 +1,13 @@
+
+# 1) create conda env
+conda create -n gamepad_py3  python=3
+
+# 2) install required packages
+
+conda install  matplotlib networkx numpy pandas pexpect plotly psutil scipy pytorch==0.3 tqdm
+
+pip install editdistance apted
+
+# 3) install gamepad python interface
+
+pip install -e .
